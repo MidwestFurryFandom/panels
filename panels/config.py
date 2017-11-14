@@ -32,6 +32,11 @@ class Config:
 panels_config = parse_config(__file__)
 c.include_plugin_config(panels_config)
 
+if not c.PANELS_EPOCH:
+    c.PANELS_EPOCH = c.EPOCH
+if not c.PANELS_ESCHATON:
+    c.PANELS_ESCHATON = c.ESCHATON
+
 c.PANEL_SCHEDULE_LENGTH = int((c.PANELS_ESCHATON - c.PANELS_EPOCH).total_seconds() // 3600) * 2
 
 c.EVENT_START_TIME_OPTS = [(dt, dt.strftime('%I %p %a') if not dt.minute else dt.strftime('%I:%M %a'))
